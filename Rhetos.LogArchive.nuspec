@@ -1,0 +1,25 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Rhetos.LogArchive</id>
+    <version>1.0.0-dev</version>
+    <authors>Omega software</authors>
+    <owners>Omega software</owners>
+    <licenseUrl>http://opensource.org/licenses/AGPL-3.0</licenseUrl>
+    <projectUrl>https://github.com/rhetos/rhetos</projectUrl>
+    <description>LogArchive is a plugin package for Rhetos development platform.
+      It allows archiving the *Common.Log* in order to improve the performance of logging,
+      and integrates the log archive into the existing auditing features.</description>
+    <copyright>Copyright Omega software 2015</copyright>
+    <tags>Rhetos plugin</tags>
+    <dependencies>
+      <dependency id="Rhetos.CommonConcepts" version="2.6.0-dev" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Readme.md" target="" />
+    <file src="DslScripts\**\*" target="DslScripts" />
+    <file src="Source\Rhetos.LogArchive\bin\Debug\Rhetos.LogArchive.pdb" target="lib\net451" />
+    <file src="Source\Rhetos.LogArchive\bin\Debug\Rhetos.LogArchive.dll" target="lib\net451" />
+  </files>
+</package>
