@@ -18,8 +18,7 @@
   </metadata>
   <files>
     <file src="Readme.md" target="" />
+    <file src="ChangeLog.md" target="" />
     <file src="DslScripts\**\*" target="DslScripts" />
-    <file src="Source\Rhetos.LogArchive\bin\Debug\Rhetos.LogArchive.pdb" target="lib\net451" />
-    <file src="Source\Rhetos.LogArchive\bin\Debug\Rhetos.LogArchive.dll" target="lib\net451" />
   </files>
 </package>
