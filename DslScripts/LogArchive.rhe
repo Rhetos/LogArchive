@@ -1,0 +1,59 @@
+Module Common
+{
+    Entity LogArchive
+    {
+        DateTime Created { Required; }
+        ShortString UserName { Required; }
+        ShortString Workstation { Required; }
+        ShortString ContextInfo;
+        ShortString Action { Required; }
+        ShortString TableName;
+        Guid ItemId { SqlIndex; }
+        LongString Description;
+        
+        SqlIndexMultiple 'TableName Action';
+		DenyUserEdit;
+    }
+
+    Entity LogRelatedItemArchive
+    {
+        Reference Log Common.LogArchive { Detail; Required; }
+        ShortString TableName { SqlIndex; }
+        Guid ItemId { SqlIndex; }
+        ShortString Relation; // Describes what is the referenced Log.ItemId to the LogRelatedItem.ItemId.
+        
+        DenyUserEdit;
+    }
+
+    LogReaderAdditionalSource LogReader.LocalArchive
+        "UNION ALL
+        SELECT
+            ID,
+            Created,
+            UserName,
+            Workstation,
+            ContextInfo,
+            Action,
+            TableName,
+            ItemId,
+            Description
+        FROM
+            Common.LogArchive WITH (NOLOCK)"
+    {
+        SqlDependsOn Common.LogArchive;
+    }
+
+    LogReaderAdditionalSource LogRelatedItemReader.LocalArchive
+        "UNION ALL
+        SELECT
+            ID,
+            LogID,
+            TableName,
+            ItemId,
+            Relation
+        FROM
+            Common.LogRelatedItemArchive WITH (NOLOCK)"
+    {
+        SqlDependsOn Common.LogRelatedItemArchive;
+    }
+}
