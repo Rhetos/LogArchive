@@ -1,22 +1,27 @@
 # LogArchive
 
 LogArchive is a plugin package for [Rhetos development platform](https://github.com/Rhetos/Rhetos).
-It allows archiving the *Common.Log* in order to improve the performance of logging,
+It allows archiving the *Common.Log* inside the same database in order to improve the performance of logging,
 and integrates the log archive into the existing auditing features.
 
 The purpose of this package is simply to **optimize the insert operations** to the current log tables, by reducing the number of the current log records. The indexes, the primary keys and the foreign key on the log tables can hinder the application's performance significantly when the log contains a large number of records (more than a million records).
 
 ## Features
 
-This plugin creates the **additional tables** for archiving *Common.Log* and *Common.LogRelatedItem*, and includes then in *LogReader* and *LogRelatedItemReader* so that the rest of the application uses both current and archived records.
+This plugin creates the additional archive tables *Common.LogArchive* and *Common.LogRelatedItemArchive*, and includes then in views *LogReader* and *LogRelatedItemReader*, so that the rest of the application uses both current and archived records.
 
 The archive tables are in the same database as the original log tables.
 
 ## Set up the automatic log archiving
 
-Note: This plugin does not provide the automation for moving the records from the log to the archive.
+Note: This plugin does not automatically schedule the process to move the records from the log to the archive.
 
-For each deployment environment, a nightly SQL job should be created that periodically moves the records from *Common.Log* and *Common.LogRelatedItem* to *Common.LogArchive* and *Common.LogRelatedItemArchive*.
+For a deployed environment, the administrator should create a daily (nightly) schedule for one of the following options:
+
+1. A database job that periodically executes the stored procedure *Common.MoveLogToArchive*.
+2. A Task Scheduler task that periodically calls the *Common.MoveLogToArchive* action over the Rhetos [REST API](https://github.com/Rhetos/RestGenerator/blob/master/Readme.md).
+
+This action and stored procedure move the records from *Common.Log* and *Common.LogRelatedItem* to *Common.LogArchive* and *Common.LogRelatedItemArchive*.
 
 ## Build
 
