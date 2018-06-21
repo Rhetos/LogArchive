@@ -20,5 +20,6 @@
     <file src="Readme.md" target="" />
     <file src="ChangeLog.md" target="" />
     <file src="DslScripts\**\*" target="DslScripts" />
+    <file src="Tools\Deploy\MoveLogToArchivePartial Runner.sql" target="Tools" />
   </files>
 </package>

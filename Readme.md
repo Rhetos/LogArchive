@@ -8,11 +8,18 @@ The purpose of this package is simply to **optimize the insert operations** to t
 
 ## Features
 
+### Archive log tables
+
 This plugin creates the additional archive tables *Common.LogArchive* and *Common.LogRelatedItemArchive*, and includes then in views *LogReader* and *LogRelatedItemReader*, so that the rest of the application uses both current and archived records.
 
 The archive tables are in the same database as the original log tables.
 
-## Set up the automatic log archiving
+### Executing the initial log archiving
+
+If the current database already contains more then 1 million log records, it is recommended to move the current log entries to the archive in smaller batches.
+Execute "MoveLogToArchivePartial Runner.sql" script in SSMS to archive the log in batches of 100000.
+
+### Set up the automatic log archiving
 
 Note: This plugin does not automatically schedule the process to move the records from the log to the archive.
 
