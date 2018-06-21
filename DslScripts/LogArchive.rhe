@@ -39,4 +39,9 @@ Module Common
 
     Action MoveLogToArchive '(parameters, repository, userInfo) =>
         _executionContext.SqlExecuter.ExecuteSql("EXEC Common.MoveLogToArchive")';
+    
+    SqlProcedure MoveLogToArchivePartial "" <SQL\MoveLogToArchivePartial.sql>;
+
+    Action MoveLogToArchivePartial '(parameters, repository, userInfo) =>
+        _executionContext.SqlExecuter.ExecuteSql("EXEC Common.MoveLogToArchivePartial")';
 }
