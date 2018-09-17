@@ -2,7 +2,6 @@ SETLOCAL
 SET Version=1.1.0
 SET Prerelease=auto
 
-
 REM Updating the version of all projects.
 PowerShell -ExecutionPolicy ByPass .\Tools\Build\ChangeVersion.ps1 %Version% %Prerelease% || GOTO Error0
 
