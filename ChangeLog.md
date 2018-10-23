@@ -1,5 +1,10 @@
 ﻿# LogArchive release notes
 
+## 1.1.0 (2018-10-23)
+
+* New utility script "MoveLogToArchivePartial Runner.sql" for archiving the log in batches to avoid blocking of the database when moving a large log.
+* Improved error handling.
+
 ## 1.0.0 (2018-05-29)
 
 * New tables for the log archive (*Common.LogArchive* and *Common.LogRelatedItemArchive*).
