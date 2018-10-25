@@ -13,17 +13,21 @@ SELECT TOP 100000 ID, ItemId, TableName, Action, ContextInfo, Workstation, Creat
 FROM Common.Log WITH (TABLOCKX); -- The Log is locked before the LogRelatedItem to minimize deadlocks.
 
 SET @Error = @@ERROR;
+IF @Error = 2627
+BEGIN
+    INSERT INTO #moving (ID)
+    SELECT TOP 100000 l.ID
+    FROM
+        Common.Log l
+        INNER JOIN Common.LogArchive la ON la.ID = l.ID;
+
+    SET @Error = @@ERROR;
+END
 IF @Error > 0 BEGIN ROLLBACK TRANSACTION @TranName; RETURN @Error; END;
 
 INSERT INTO Common.LogRelatedItemArchive (ID, LogID, ItemId, Relation, TableName)
 SELECT ID, LogID, ItemId, Relation, TableName
 FROM Common.LogRelatedItem WITH (TABLOCKX)
-WHERE LogID IN (SELECT ID FROM #moving);
-
-SET @Error = @@ERROR;
-IF @Error > 0 BEGIN ROLLBACK TRANSACTION @TranName; RETURN @Error; END;
-
-DELETE FROM Common.LogRelatedItem
 WHERE LogID IN (SELECT ID FROM #moving);
 
 SET @Error = @@ERROR;
