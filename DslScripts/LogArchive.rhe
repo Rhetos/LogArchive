@@ -35,12 +35,24 @@ Module Common
         SqlDependsOn Common.LogRelatedItemArchive;
     }
 
-    SqlProcedure MoveLogToArchive "" <SQL\MoveLogToArchive.sql>;
+    SqlProcedure MoveLogToArchive "" <SQL\MoveLogToArchive.sql>
+    {
+        SqlDependsOn Common.Log;
+        SqlDependsOn Common.LogArchive;
+        SqlDependsOn Common.LogRelatedItem;
+        SqlDependsOn Common.LogRelatedItemArchive;
+    }
 
     Action MoveLogToArchive '(parameters, repository, userInfo) =>
         _executionContext.SqlExecuter.ExecuteSql("EXEC Common.MoveLogToArchive")';
     
-    SqlProcedure MoveLogToArchivePartial "" <SQL\MoveLogToArchivePartial.sql>;
+    SqlProcedure MoveLogToArchivePartial "" <SQL\MoveLogToArchivePartial.sql>
+    {
+        SqlDependsOn Common.Log;
+        SqlDependsOn Common.LogArchive;
+        SqlDependsOn Common.LogRelatedItem;
+        SqlDependsOn Common.LogRelatedItemArchive;
+    }
 
     Action MoveLogToArchivePartial '(parameters, repository, userInfo) =>
         _executionContext.SqlExecuter.ExecuteSql("EXEC Common.MoveLogToArchivePartial")';
