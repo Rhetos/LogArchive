@@ -1,5 +1,10 @@
 ﻿# LogArchive release notes
 
+## 1.2.0 (2020-05-14)
+
+* Detection of partially copied data.
+* Bugfix: Missing SQL dependencies may cause deployment to fail with an SQL error.
+
 ## 1.1.0 (2018-10-23)
 
 * New utility script "MoveLogToArchivePartial Runner.sql" for archiving the log in batches to avoid blocking of the database when moving a large log.
