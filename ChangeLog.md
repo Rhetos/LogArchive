@@ -1,5 +1,9 @@
 ﻿# LogArchive release notes
 
+## 1.3.0 (2021-03-05)
+
+* Bugfix: Missing database dependencies may cause deployment to fail with an SQL error.
+
 ## 1.2.0 (2020-05-14)
 
 * Detection of partially copied data.
