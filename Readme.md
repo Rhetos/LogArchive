@@ -1,8 +1,10 @@
 # LogArchive
 
 LogArchive is a plugin package for [Rhetos development platform](https://github.com/Rhetos/Rhetos).
-It allows archiving the *Common.Log* inside the same database in order to improve the performance of logging,
-and integrates the log archive into the existing auditing features.
+
+It provides simple archive storage for the Common.Log table to improve the application's performance.
+The archive is placed in the same database, it is integrated into existing auditing features,
+and is automatically available to the log readers.
 
 The purpose of this package is simply to **optimize the insert operations** to the current log tables, by reducing the number of the current log records. The indexes, the primary keys and the foreign key on the log tables can hinder the application's performance significantly when the log contains a large number of records (more than a million records).
 
