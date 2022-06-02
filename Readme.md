@@ -19,7 +19,8 @@ The archive tables are in the same database as the original log tables.
 ### Executing the initial log archiving
 
 If the current database already contains more then 1 million log records, it is recommended to move the current log entries to the archive in smaller batches.
-Execute "MoveLogToArchivePartial Runner.sql" script in SSMS to archive the log in batches of 100000.
+Execute [MoveLogToArchivePartial Runner.sql](Tools/Deploy/MoveLogToArchivePartial%20Runner.sql)
+script in SSMS to archive the log in batches of 100000.
 
 ### Set up the automatic log archiving
 
