@@ -1,5 +1,10 @@
 ﻿# LogArchive release notes
 
+## 1.4.0 (2023-03-23)
+
+* Increased SQL command timout for Actions `Common.MoveLogToArchive` and `Common.MoveLogToArchivePartial` to 30 minutes.
+  The value is configurable, see [Readme.md](Readme.md).
+
 ## 1.3.0 (2021-03-05)
 
 * Bugfix: Missing database dependencies may cause deployment to fail with an SQL error.

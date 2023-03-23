@@ -26,12 +26,33 @@ script in SSMS to archive the log in batches of 100000.
 
 Note: This plugin does not automatically schedule the process to move the records from the log to the archive.
 
-For a deployed environment, the administrator should create a daily (nightly) schedule for one of the following options:
+For a deployed environment, the administrator should **create a daily (nightly) schedule** for one of the following options:
 
 1. A database job that periodically executes the stored procedure *Common.MoveLogToArchive*.
-2. A Task Scheduler task that periodically calls the *Common.MoveLogToArchive* action over the Rhetos [REST API](https://github.com/Rhetos/RestGenerator/blob/master/Readme.md).
+2. A scheduled task that periodically calls the *Common.MoveLogToArchive* action over the Rhetos [REST API](https://github.com/Rhetos/RestGenerator/blob/master/Readme.md).
 
-This action and stored procedure move the records from *Common.Log* and *Common.LogRelatedItem* to *Common.LogArchive* and *Common.LogRelatedItemArchive*.
+This action or stored procedure move the records from *Common.Log* and *Common.LogRelatedItem* to *Common.LogArchive* and *Common.LogRelatedItemArchive*.
+
+**For example**, on Rhetos 5 application that uses [Rhetos.Jobs.Hangfire](https://github.com/Rhetos/Jobs),
+you can schedule the daily job for 2:30 AM by adding the configuration to appsettings.json:
+
+```json
+"Rhetos": {
+  "Jobs": {
+    "Recurring": {
+      "MoveLogToArchive": {
+        "CronExpression": "30 2 * * *",
+        "Action": "Common.MoveLogToArchive"
+      }
+    }
+  }
+}
+```
+
+Remarks on SQL command **timeout**:
+
+* When executing the Rhetos actions Common.MoveLogToArchive and Common.MoveLogToArchivePartial, the actions will set SQL command timeout to 30 minutes. Tipical duration of the log archival is from a few seconds to several minutes.
+* The timeout is configurable by setting "Rhetos:LogArchive:TimeoutSeconds" configuration value.
 
 ## Installation and configuration
 

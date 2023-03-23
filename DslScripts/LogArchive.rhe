@@ -35,6 +35,8 @@ Module Common
         SqlDependsOn Common.LogRelatedItemArchive;
     }
 
+    //===============================================================
+
     SqlProcedure MoveLogToArchive "" <SQL\MoveLogToArchive.sql>
     {
         SqlDependsOn Common.Log;
@@ -44,7 +46,23 @@ Module Common
     }
 
     Action MoveLogToArchive '(parameters, repository, userInfo) =>
-        _executionContext.SqlExecuter.ExecuteSql("EXEC Common.MoveLogToArchive")';
+        {
+            int timeoutSeconds = _configuration.GetInt("Rhetos.LogArchive.TimeoutSeconds", 1800).Value;
+
+            var sqlCommand = new System.Data.SqlClient.SqlCommand(
+                "EXEC Common.MoveLogToArchive",
+                (System.Data.SqlClient.SqlConnection)_executionContext.PersistenceTransaction.Connection,
+                (System.Data.SqlClient.SqlTransaction)_executionContext.PersistenceTransaction.Transaction)
+                {
+                    CommandTimeout = timeoutSeconds
+                };
+            sqlCommand.ExecuteNonQuery();
+        }'
+    {
+        RepositoryUses '_configuration' 'Rhetos.Utilities.IConfiguration, Rhetos.Utilities';
+    }
+
+    //===============================================================
     
     SqlProcedure MoveLogToArchivePartial "" <SQL\MoveLogToArchivePartial.sql>
     {
@@ -55,5 +73,19 @@ Module Common
     }
 
     Action MoveLogToArchivePartial '(parameters, repository, userInfo) =>
-        _executionContext.SqlExecuter.ExecuteSql("EXEC Common.MoveLogToArchivePartial")';
+        {
+            int timeoutSeconds = _configuration.GetInt("Rhetos.LogArchive.TimeoutSeconds", 1800).Value;
+
+            var sqlCommand = new System.Data.SqlClient.SqlCommand(
+                "EXEC Common.MoveLogToArchivePartial",
+                (System.Data.SqlClient.SqlConnection)_executionContext.PersistenceTransaction.Connection,
+                (System.Data.SqlClient.SqlTransaction)_executionContext.PersistenceTransaction.Transaction)
+                {
+                    CommandTimeout = timeoutSeconds
+                };
+            sqlCommand.ExecuteNonQuery();
+        }'
+    {
+        RepositoryUses '_configuration' 'Rhetos.Utilities.IConfiguration, Rhetos.Utilities';
+    }
 }
