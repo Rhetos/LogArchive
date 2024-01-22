@@ -33,6 +33,13 @@ WHERE LogID IN (SELECT ID FROM #moving);
 SET @Error = @@ERROR;
 IF @Error > 0 BEGIN ROLLBACK TRANSACTION @TranName; RETURN @Error; END;
 
+-- Some databases don't have cascade delete in database, depending on Rhetos configuration settings.
+DELETE FROM Common.LogRelatedItem
+WHERE LogID IN (SELECT ID FROM #moving);
+
+SET @Error = @@ERROR;
+IF @Error > 0 BEGIN ROLLBACK TRANSACTION @TranName; RETURN @Error; END;
+
 DELETE FROM Common.Log
 WHERE ID IN (SELECT ID FROM #moving);
 
