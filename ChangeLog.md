@@ -1,5 +1,11 @@
 ﻿# LogArchive release notes
 
+## 4.0.0 (TO BE RELEASED)
+
+* Modified RepositoryUses type definition, for compatibility with Rhetos v6.
+  * This LogArchive version is compatible with Rhesos v4.3.0 and later, including Rhetos v6.
+    The previous LogArchive versions were compatible with Rhetos v2 - v5.
+
 ## 1.4.0 (2023-03-23)
 
 * Increased SQL command timout for Actions `Common.MoveLogToArchive` and `Common.MoveLogToArchivePartial` to 30 minutes.
