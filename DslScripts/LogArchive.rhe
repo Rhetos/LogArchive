@@ -47,7 +47,7 @@ Module Common
 
     Action MoveLogToArchive '(parameters, repository, userInfo) =>
         {
-            int timeoutSeconds = _configuration.GetInt("Rhetos.LogArchive.TimeoutSeconds", 1800).Value;
+            int timeoutSeconds = _configuration.GetValue("Rhetos.LogArchive.TimeoutSeconds", 1800);
 
             var sqlCommand = new System.Data.SqlClient.SqlCommand(
                 "EXEC Common.MoveLogToArchive",
@@ -74,7 +74,7 @@ Module Common
 
     Action MoveLogToArchivePartial '(parameters, repository, userInfo) =>
         {
-            int timeoutSeconds = _configuration.GetInt("Rhetos.LogArchive.TimeoutSeconds", 1800).Value;
+            int timeoutSeconds = _configuration.GetValue("Rhetos.LogArchive.TimeoutSeconds", 1800);
 
             var sqlCommand = new System.Data.SqlClient.SqlCommand(
                 "EXEC Common.MoveLogToArchivePartial",
