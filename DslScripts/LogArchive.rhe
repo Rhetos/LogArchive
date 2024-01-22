@@ -59,7 +59,7 @@ Module Common
             sqlCommand.ExecuteNonQuery();
         }'
     {
-        RepositoryUses '_configuration' 'Rhetos.Utilities.IConfiguration, Rhetos.Utilities';
+        RepositoryUses '_configuration' 'Rhetos.Utilities.IConfiguration';
     }
 
     //===============================================================
@@ -86,6 +86,6 @@ Module Common
             sqlCommand.ExecuteNonQuery();
         }'
     {
-        RepositoryUses '_configuration' 'Rhetos.Utilities.IConfiguration, Rhetos.Utilities';
+        RepositoryUses '_configuration' 'Rhetos.Utilities.IConfiguration';
     }
 }
