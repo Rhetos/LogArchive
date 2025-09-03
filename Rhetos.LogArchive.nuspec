@@ -10,14 +10,15 @@
     <description>LogArchive is a plugin package for Rhetos development platform.
       It allows archiving the *Common.Log* in order to improve the performance of logging,
       and integrates the log archive into the existing auditing features.</description>
+    <readme>docs\Readme.md</readme>
     <copyright>Copyright Omega software 2015</copyright>
     <tags>Rhetos plugin</tags>
     <dependencies>
-      <dependency id="Rhetos.CommonConcepts" version="2.6.0" />
+      <dependency id="Rhetos.CommonConcepts" version="4.3.0" />
     </dependencies>
   </metadata>
   <files>
-    <file src="Readme.md" target="" />
+    <file src="Readme.md" target="docs" />
     <file src="ChangeLog.md" target="" />
     <file src="DslScripts\**\*" target="DslScripts" />
     <file src="Tools\Deploy\MoveLogToArchivePartial Runner.sql" target="Tools" />

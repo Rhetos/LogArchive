@@ -1,16 +1,15 @@
 ﻿# LogArchive release notes
 
-## 4.0.0 (TO BE RELEASED)
+## 4.0.0 (2025-09-03)
 
-* Modified RepositoryUses and IConfiguration usage, for compatibility with Rhetos v6.
-  * This LogArchive version is compatible with Rhesos v4.3.0 and later, including Rhetos v6.
-    The previous LogArchive version (1.4.0) was compatible with Rhetos v2 - v5.
+* Compatibility with Rhetos v4.3.0 and later, including Rhetos v6.
+  The previous LogArchive version (v1.4.0) was compatible with Rhetos v2 - v5.
 * Bugfix: Common.MoveLogToArchivePartial fails on REFERENCE constraint "FK_LogRelatedItem_Log_LogID",
   if the Rhetos is configured to not use cascade delete in database.
 
 ## 1.4.0 (2023-03-23)
 
-* Increased SQL command timout for Actions `Common.MoveLogToArchive` and `Common.MoveLogToArchivePartial` to 30 minutes.
+* Increased SQL command timeout for Actions `Common.MoveLogToArchive` and `Common.MoveLogToArchivePartial` to 30 minutes.
   The value is configurable, see [Readme.md](Readme.md).
 
 ## 1.3.0 (2021-03-05)
